@@ -1,26 +1,24 @@
-import React from 'react';
-import '../styles/App.css';
-import Home from './Home.jsx';
-import About from './About.jsx';
-import Discover from './Discover.jsx';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from "react"
+import "./App.css"
+import Navigation from "./Navigation"
+import Home from "./Home"
+import Discover from "./Discover"
+import About from "./About"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/Discover">
-          <Discover />
-        </Route>
-        <Route exact path="/About">
-          <About />
-        </Route>
-      </Router>
-    </div>
-  );
+function App(){
+    return(
+        <Router>            
+            <div className="App">
+            <Navigation />
+            <Switch>                    
+                <Route path="/" exact component={Home} />
+                <Route path="/about" component={About}/>
+                <Route path="/discover" component={Discover} />
+            </Switch>
+            </div>            
+        </Router>        
+    )
 }
 
-export default App;
+export default App

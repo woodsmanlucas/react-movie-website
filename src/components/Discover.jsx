@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Select from "react-select"
-import Axios from "axios";
-import { Link } from "react-router-dom"
+import React from "react"
 
 function Discover(){
-
-    return (
-        <h1>Welcome</h1>
+    return(
+        <h1>Discover Page</h1>
     )
 }
 
