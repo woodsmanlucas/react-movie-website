@@ -67,7 +67,7 @@ function Home(){
                                 <div className="data">
                                     <div className="content">
                                         <p className="text">{movie.overview}</p>
-                                        <a href="#" className="button">Read more</a>
+                                        <a href={`/movie/${movie.id}`} className="button">Read more</a>
                                     </div>
                                 </div>
                             </div>
