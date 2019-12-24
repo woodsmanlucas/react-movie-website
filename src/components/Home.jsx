@@ -3,25 +3,54 @@ import "./App.css"
 import { Link } from "react-router-dom"
 import Moment from "moment"
 
+
 function Home(){
     
     useEffect(() => {
         fetchMovies()
     }, [])
 
-    const [movies, setMovies] = useState([])
+    const [moviesPerPage, setMoviesPerPage] = useState([])
+    const [pageNumber, setPageNumber] = useState(1)
+    const [totalPages, setTotalPages] = useState()
+    const [moviesEnd, setMoviesEnd] = useState(12)
+    const [moviesStart, setMoviesStart] = useState(0)
+    const [moviesArrayLength, setMoviesArrayLength] = useState(20)
+    const [remain, setRemain] = useState()
+    const [remainMovies, setRemainMovies] = useState()
 
     const fetchMovies = async () => {
-        const data = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=47c4adc75b16f23db3cf78e4870a4296")
+
+        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${pageNumber}&api_key=47c4adc75b16f23db3cf78e4870a4296`)
+
         const movies = await data.json()
-        console.log(movies.results)
-        setMovies(movies.results)
+
+            setMoviesPerPage(movies.results.slice(moviesStart, moviesEnd))
+    
+    }
+
+    const nextPage = async () => {
+
+        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${pageNumber}&api_key=47c4adc75b16f23db3cf78e4870a4296`)
+
+        const movies = await data.json()
+
+        setPageNumber(pageNumber + 1)
+
+        console.log(pageNumber)
+
+        setRemain(moviesArrayLength - moviesEnd)        
+
+        setRemainMovies(movies.results.slice(moviesEnd, moviesArrayLength))
+        
+        setMoviesEnd(moviesEnd - remain)
+
     }
 
     return(
         <div className="main-container">
             <div className="container">
-                {movies.map(movie => (
+                {moviesPerPage.map(movie => (
                     <div className="row" key = {movie.id}>
                         <div className="card">
                             <div className="wrapper" 
@@ -47,7 +76,10 @@ function Home(){
                         </div>
                     </div>
                 ))}
-            </div>
+                <Link to="/">
+                <button className="next-page" onClick={()=>{nextPage()}}>Next {pageNumber}</button>
+                </Link> 
+            </div>                           
         </div>
     )
 }
