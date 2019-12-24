@@ -37,8 +37,6 @@ function Home(){
 
         setPageNumber(pageNumber + 1)
 
-        console.log(pageNumber)
-
         setRemain(moviesArrayLength - moviesEnd)        
 
         setRemainMovies(movies.results.slice(moviesEnd, moviesArrayLength))
