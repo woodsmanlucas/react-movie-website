@@ -51,6 +51,7 @@ function Home(){
                 {moviesPerPage.map(movie => (
                     <div className="row" key = {movie.id}>
                         <div className="card">
+                        <a href={`/movie/${movie.id}`} className="button">
                             <div className="wrapper" 
                                  style = {{backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`,
                                            backgroundRepeat : "no-repeat",
@@ -67,10 +68,11 @@ function Home(){
                                 <div className="data">
                                     <div className="content">
                                         <p className="text">{movie.overview}</p>
-                                        <a href={`/movie/${movie.id}`} className="button">Read more</a>
+                                        <p>Read more</p>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 ))}
