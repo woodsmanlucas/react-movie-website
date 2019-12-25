@@ -2,53 +2,29 @@ import React, { useState, useEffect } from "react"
 import "./App.css"
 import { Link } from "react-router-dom"
 import Moment from "moment"
-
+import {useParams} from "react-router"
+import axios from "axios"
 
 function Home(){
+
+    const [movie, setMovie] = useState([])
+    const {list} = useParams()
+    const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
     useEffect(() => {
         fetchMovies()
-    }, [])
-
-    const [moviesPerPage, setMoviesPerPage] = useState([])
-    const [pageNumber, setPageNumber] = useState(1)
-    const [totalPages, setTotalPages] = useState()
-    const [moviesEnd, setMoviesEnd] = useState(12)
-    const [moviesStart, setMoviesStart] = useState(0)
-    const [moviesArrayLength, setMoviesArrayLength] = useState(20)
-    const [remain, setRemain] = useState()
-    const [remainMovies, setRemainMovies] = useState()
+    }, [movie])
 
     const fetchMovies = async () => {
-
-        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${pageNumber}&api_key=47c4adc75b16f23db3cf78e4870a4296`)
-
-        const movies = await data.json()
-
-            setMoviesPerPage(movies.results.slice(moviesStart, moviesEnd))
-    
-    }
-
-    const nextPage = async () => {
-
-        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?page=${pageNumber}&api_key=47c4adc75b16f23db3cf78e4870a4296`)
-
-        const movies = await data.json()
-
-        setPageNumber(pageNumber + 1)
-
-        setRemain(moviesArrayLength - moviesEnd)        
-
-        setRemainMovies(movies.results.slice(moviesEnd, moviesArrayLength))
-        
-        setMoviesEnd(moviesEnd - remain)
-
+        const url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
+        const response = await axios.get(url)
+        setMovie(response.data.results.slice(0,12))
     }
 
     return(
         <div className="main-container">
             <div className="container">
-                {moviesPerPage.map(movie => (
+                {movie.map(movie => (
                     <div className="row" key = {movie.id}>
                         <div className="card">
                             <div className="wrapper" 
@@ -74,10 +50,7 @@ function Home(){
                         </div>
                     </div>
                 ))}
-                <Link to="/">
-                <button className="next-page" onClick={()=>{nextPage()}}>Next {pageNumber}</button>
-                </Link> 
-            </div>                           
+            </div>
         </div>
     )
 }

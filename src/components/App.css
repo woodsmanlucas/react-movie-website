@@ -32,11 +32,33 @@ section, main, footer, ul, li{
   display: none;
 }
 
+.search{
+  text-align: right;
+}
+
+.search input {
+  height: 39px;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.search img{
+  width: 100%;
+}
+
+.search button{
+  padding: 0;
+  width: 2.3em;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
 label{
   font-size: 50px;
   position: fixed;
   left: 20px;
-  top: 20px;
+  top: 40px;
   transition: 0.5s;
   cursor: pointer;
   color:rgba(255,255,255);
@@ -46,7 +68,7 @@ label{
 .nav-links{
   list-style:none;
   background:rgb(119, 215, 185);
-  width:150px;
+  width:125px;
   padding-top:30px;
   position:fixed;
   height:100%;
@@ -57,10 +79,10 @@ label{
 
 .nav-links li{
   color:rgba(255,255,255,0.7);
-  margin:25px;
+  margin-top:20px;
   text-transform:capitalize;
   font-family:helvetica;
-  text-align:right;
+  text-align:left;
   cursor:pointer;
 }
 
@@ -79,7 +101,7 @@ body{
 
 .main-container{
   margin: 0 auto;
-  padding-top: 75px;
+  padding-top: 40px;
   max-width: 1500px;
 }
 
