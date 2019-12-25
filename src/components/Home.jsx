@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import "./App.css"
-import { Link } from "react-router-dom"
 import Moment from "moment"
 import {useParams} from "react-router"
 import axios from "axios"
@@ -43,7 +42,7 @@ function Home(){
                                 <div className="data">
                                     <div className="content">
                                         <p className="text">{movie.overview}</p>
-                                        <a href="#" className="button">Read more</a>
+                                        <a href={`/movie/${movie.id}`} className="button">Read more</a>
                                     </div>
                                 </div>
                             </div>
