@@ -13,7 +13,7 @@ function Home(){
     
     useEffect(() => {
         fetchMovies()
-    }, [movie])
+    }, [list])
 
     const fetchMovies = async () => {
         if (list == null){

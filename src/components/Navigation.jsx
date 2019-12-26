@@ -15,7 +15,7 @@ function Navigation(){
                     </form>
                 </div>     
                 <ul className="nav-links">
-                    <Link to="/popular"><li>Home</li></Link>
+                    <Link to="/popular"><li>Popular</li></Link>
                     <Link to="/top_rated"><li>Top Rated</li></Link>
                     <Link to="/now_playing"><li>Now Playing</li></Link>
                     <Link to="/upcoming"><li>Upcoming Movies</li></Link>

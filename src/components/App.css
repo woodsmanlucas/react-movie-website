@@ -37,7 +37,10 @@ section, main, footer, ul, li{
 }
 
 .search input {
-  height: 39px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
   border-radius: 5px;
   font-size: 25px;
 }
@@ -71,10 +74,19 @@ label{
   width:125px;
   padding-top:30px;
   position:fixed;
-  height:100%;
+  height: 100vh;
   left:-180px;
+  top: 0;
   transition:0.5s;
   z-index: 888;
+}
+
+.nav-links a:hover{
+  text-decoration: none;
+}
+
+a:hover li{
+  color: blue;
 }
 
 .nav-links li{

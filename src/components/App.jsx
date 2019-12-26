@@ -13,13 +13,13 @@ function App(){
             <div className="App black">
             <Navigation />
             <Switch>       
-                <Route default component={Home} />             
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
                 <Route path="/movie/:id" component={Movie} />
                 <Route path="/:list">
                     <Home />
                 </Route> 
+                <Route default component={Home} />             
             </Switch>
             </div>            
         </Router>        
