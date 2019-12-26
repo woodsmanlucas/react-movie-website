@@ -213,3 +213,7 @@ body{
 .movie{
   width: 450px;
 }
+
+.black{
+  background-color: black;
+}

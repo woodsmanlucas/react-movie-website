@@ -25,13 +25,13 @@ function Home(){
     }
 
     return(
-        <div className="main-container">
+        <div className="main-container black">
             <div className="container">
             <div className="d-lg-flex flex-wrap">
                 {movie.map(movie => (
 
                     <div className="col" key = {movie.id}>
-                        <div className="card movie">
+                        <div className="card mb-4 movie">
                             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                             <div className="card-body">
                                 <div className="date">
