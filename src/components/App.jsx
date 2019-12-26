@@ -12,11 +12,12 @@ function App(){
         <Router>            
             <div className="App">
             <Navigation />
-            <Switch>                    
+            <Switch>       
+                <Route default component={Home} />             
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
                 <Route path="/movie/:id" component={Movie} />
-                <Route exact path="/:list">
+                <Route path="/:list">
                     <Home />
                 </Route> 
             </Switch>

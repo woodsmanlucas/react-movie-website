@@ -25,7 +25,7 @@ export function Movie(props){
         <div className="container">
         <div className="row">
             <div className="col align-self-center">
-        <div className="card movie"> 
+        <div className="card"> 
             <img class="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="card-body">
                 <div className="row date info">
