@@ -85,7 +85,7 @@ label{
   text-decoration: none;
 }
 
-a:hover li{
+.nav-links a:hover li{
   color: blue;
 }
 
