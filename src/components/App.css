@@ -159,11 +159,12 @@ body{
 }
 
 .menu-content li span{
-  position: absolute;
-  left: -5px;
+  position: relative;
+  left: -20px;
   top: 0;
   font-weight: 700;
   font-family: 'Open Sans';
+  color: white;
 }
 
 .wrapper .menu-content span{
@@ -224,6 +225,7 @@ body{
 
 .movie{
   width: 450px;
+  margin: 0 auto;
 }
 
 .black{

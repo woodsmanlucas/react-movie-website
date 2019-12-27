@@ -27,11 +27,11 @@ function Home(){
     return(
         <div className="main-container black">
             <div className="container">
-            <div className="d-lg-flex flex-wrap">
+            <div className="d-lg-flex flex-wrap justify-content-end">
                 {movie.map(movie => (
 
-                    <div className="col" key = {movie.id}>
-                        <div className="card mb-4 movie">
+                    <div className="col ml-auto" key = {movie.id}>
+                        <div className="card mb-4  movie">
                             { (movie.poster_path == null) ? (<img src="https://www.nyfa.edu/student-resources/wp-content/uploads/2015/03/Blank-Movie-Poster1.jpg" alt="generic image" />)
                             : (<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />) }
                             <div className="card-body">
@@ -39,19 +39,20 @@ function Home(){
                                         <span>{Moment(movie.release_date).format('MMM d YYYY')}</span>
                                 </div>
                                 <ul className="menu-content">
-                                     <li><a href="#" className="fa fa-heart-o"><span>{movie.vote_average}</span></a></li>
+                                     <li><a href="#" className="fa fa-heart-o"></a></li>
+                                     <li><span>{movie.vote_average}</span></li>
                                 </ul>
                                 </div>
                                 <div className="card-text">
                                     <div className="content">
-                                        <p className="text">{movie.overview}</p>
+                                        <p className="text">{movie.overview.substring(0, 120) + "..."}</p>
+                                        <a href={`/movie/${movie.id}`} className="button">Read more</a>
                                     </div>
                                 </div>
-                                <a href={`/movie/${movie.id}`} className="button">Read more</a>
                                 </div>
                             </div>
-                ))}
-                                        </div>
+                        ))}
+                    </div>
             </div>
         </div>
     )
