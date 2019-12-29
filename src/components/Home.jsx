@@ -4,15 +4,21 @@ import {useParams} from "react-router"
 import axios from "axios"
 import "./App.css"
 import "../styles/bootstrap.min.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+
 
 function Home(){
 
     const [movie, setMovie] = useState([])
+    const [heart, setHeart] = useState({})
     let {list} = useParams()
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
     useEffect(() => {
         fetchMovies()
+        mapHearts()
     }, [list])
 
     const fetchMovies = async () => {
@@ -22,6 +28,27 @@ function Home(){
         const url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
         const response = await axios.get(url)
         setMovie(response.data.results.slice(0,12))
+    }
+
+    function mapHearts(){
+        let HeartMapped = {}
+        movie.map(movie => {
+            HeartMapped[movie.id] = false
+        })
+        setHeart(HeartMapped)
+    }
+
+    function handleClick(id){
+        console.log(id)
+        console.log(heart)
+        let heartTemp = heart
+        if(heartTemp[id]){
+            heartTemp[id] = false
+        }
+        else{
+            heartTemp[id] = true
+        }
+        setHeart(heartTemp)
     }
 
     return(
@@ -39,7 +66,8 @@ function Home(){
                                         <span>{Moment(movie.release_date).format('MMM d YYYY')}</span>
                                 </div>
                                 <ul className="menu-content">
-                                     <li><a href="#" className="fa fa-heart-o"></a></li>
+                                     <li><button onClick={() => handleClick(movie.id)} >
+                                        {(heart[movie.id]) ? (<FontAwesomeIcon icon={faHeartSolid} color="white" />) : (<FontAwesomeIcon icon={faHeartRegular} color="white" />)}</button></li>
                                      <li><span>{movie.vote_average}</span></li>
                                 </ul>
                                 </div>
