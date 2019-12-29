@@ -20,7 +20,8 @@ function Navigation(){
                     <Link to="/now_playing"><li>Now Playing</li></Link>
                     <Link to="/upcoming"><li>Upcoming Movies</li></Link>
                     <Link to="/about"><li>About</li></Link>                        
-                    <Link to="/discover"><li>Discover</li></Link>                                     
+                    <Link to="/discover"><li>Discover</li></Link>
+                    <Link to="/favorites"><li>Favorites</li></Link>                                     
                 </ul>
             </nav>
         </div>        

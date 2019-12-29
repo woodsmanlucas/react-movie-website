@@ -5,8 +5,9 @@ import axios from "axios"
 import "./App.css"
 import "../styles/bootstrap.min.css"
 import FavoriteButton from './FavoriteButton'
+import { tsPropertySignature } from "@babel/types"
 
-function Home(){
+function Home(props){
 
     const [movies, setMovies] = useState([])
     let {list} = useParams()
@@ -24,6 +25,9 @@ function Home(){
         setMovies(response.data.results.slice(0,12))
     }
 
+    function getFavorites (favorites) {
+        props.getValue(favorites)
+    }
 
 
 
@@ -42,7 +46,7 @@ function Home(){
                                         <span>{Moment(movie.release_date).format('MMM d YYYY')}</span>
                                 </div>
                                 <ul className="menu-content">
-                                     <FavoriteButton />
+                                     <FavoriteButton getValue={getFavorites} id={movie.id} />
                                      <li><span>{movie.vote_average}</span></li>
                                 </ul>
                                 </div>

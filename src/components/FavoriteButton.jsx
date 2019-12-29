@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 
-function FavoriteButton () {
+function FavoriteButton (props) {
     
     const [heart, setHeart] = useState(false)
 
     function handleClick () {
         if(heart){
             setHeart(false)
+            props.getValue(-props.id)
         }
         else{
             setHeart(true)
+            props.getValue(props.id)
         }
     }
 
