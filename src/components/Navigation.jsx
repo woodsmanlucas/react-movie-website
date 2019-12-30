@@ -1,19 +1,16 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import search from "../images/search.png"
+import SearchMovie from "./SearchMovie"
 
-function Navigation(){
+function Navigation(props){
     return(
         <div>
+            <nav className="navbar navbar-light fixed-top flex-row-reverse bg-dark">
+            <label htmlFor="btn-menu">&#9776;</label>
+                <SearchMovie />
+            </nav>
             <input type="checkbox" id="btn-menu"/>
-            <nav className="navbar">   
-                <label htmlFor="btn-menu">&#9776;</label>  
-                <div className="search">
-                    <form action="">
-                        <input type="text" name="Search" size="20"/>
-                        <button><img src={search} alt="search"/></button>
-                    </form>
-                </div>     
+            <nav className="navbar">                         
                 <ul className="nav-links">
                     <Link to="/popular"><li>Popular</li></Link>
                     <Link to="/top_rated"><li>Top Rated</li></Link>

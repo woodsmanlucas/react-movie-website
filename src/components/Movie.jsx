@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {useParams} from "react-router"
 import '../styles/bootstrap.min.css'
 import './App.css'
 import Moment from 'moment'
@@ -7,7 +8,7 @@ import RatingStars from './RatingStars'
 
 export function Movie(props){
     const [movie, setMovie] = useState({})
-    const id = props.match.params.id
+    let {id} = useParams()
     const [displayrating, setDisplayRating] = useState(localStorage.getItem('stars'+id) || false)
 
     useEffect(() => {
@@ -20,6 +21,10 @@ export function Movie(props){
                 setMovie(value); 
             })
             
+        }
+
+        function getStars (stars, id){
+            props.getStars(stars, id)
         }
 
         function getFavorites (favorites) {
@@ -49,7 +54,7 @@ export function Movie(props){
                 </ul>
             </div>
             {displayrating && (
-                <RatingStars id={id} />
+                <RatingStars id={id} getStars={getStars} rating={props.ratings[id]} />
             )}
             <div className="card-text">
                 <div className="content">

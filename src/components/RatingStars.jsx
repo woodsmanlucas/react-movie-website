@@ -5,24 +5,24 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 function RatingStars (props) {
     
-    const [starsObject, setStarsObject] = useState(JSON.parse(localStorage.getItem('starsObject')) || {})
-    const [star, setStar] = useState(getStar(starsObject, id))
-    const [stars, setStars] = useState(getStarsArray(star))
+    const [stars, setStars] = useState(props.rating)
+    const [starsArray, setStarsArray] = useState(getStarsArray(stars))
 
-    useEffect(() => {    getStarsArray(star)
-        localStorage.setItem('stars'+props.id, star)}, [star])
+    useEffect(() => {    getStarsArray(stars)
+        localStorage.setItem('stars'+props.id, stars)}, [stars])
 
     function handleClick () {
-        let temp = star
-        if(star >= 5){
-            setStar(0)
+        let temp = stars
+        if(temp >= 5){
+            setStars(0)
             temp = 0
         }
         else{
-            setStar((star + 1))
             temp++
+            setStars(temp)
         }
-        setStars(getStarsArray(temp))
+        setStarsArray(getStarsArray(temp))
+        props.getStars(stars, props.id)
     }
 
     function getStarsArray(NumberOfStars){
@@ -43,10 +43,10 @@ function RatingStars (props) {
     return (
     <li>
         <button className="Rating" onClick={() => handleClick()} >
-            {stars.map( (star) => {return (star) ? 
+            {starsArray.map( (star) => {return (star) ? 
                  <FontAwesomeIcon icon={faStarSolid} color="black" />
                  :
-                 <FontAwesomeIcon icon={faStarRegular} />
+                 <FontAwesomeIcon icon={faStarRegular} color="black" />
             })}
     </button>
    </li>

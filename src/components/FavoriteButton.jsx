@@ -5,7 +5,8 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 
 function FavoriteButton (props) {
     
-    const [heart, setHeart] = useState(false)
+    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
+    const [heart, setHeart] = useState((favorites.indexOf(props.id) !== -1))
 
     function handleClick () {
         if(heart){
