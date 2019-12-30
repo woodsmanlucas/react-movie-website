@@ -21,13 +21,14 @@ function Home(props){
             list = 'popular'
         }
         const url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
+        // const url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=spiderman`
         const response = await axios.get(url)
         setMovies(response.data.results.slice(0,12))
     }
 
     function getFavorites (favorites) {
         props.getValue(favorites)
-        console.log(favorites)
+        // console.log(favorites)
     }
 
     return(

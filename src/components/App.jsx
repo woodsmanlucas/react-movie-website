@@ -14,23 +14,23 @@ function App(){
     useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites))}, [favorites])
 
     function getFavorites(id) {
-
             if(id > 0){
                 if(favorites.indexOf(id) === -1){
                     setFavorites([...favorites, id])
                 }
             } else {
-                setFavorites(favorites.filter((value) => {return -id==value}))
+                // setFavorites(favorites.filter((value) => {return -id==value}))
+                setFavorites(favorites.filter((value) => { return value !== -id}))
             }
-            console.log(favorites)        
-        
+            console.log(favorites)                
     }
 
     return(
         <Router>            
             <div className="App black">
             <Navigation />
-            {console.log(favorites)}
+            {/* {console.log(favorites)}
+            {console.log(localStorage.favorites)} */}
             <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
