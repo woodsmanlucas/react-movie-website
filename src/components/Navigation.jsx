@@ -5,15 +5,15 @@ import search from "../images/search.png"
 function Navigation(){
     return(
         <div>
+            <nav className="navbar navbar-light fixed-top flex-row-reverse bg-dark">
+            <label htmlFor="btn-menu">&#9776;</label>
+                <form className="form-inline">
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
             <input type="checkbox" id="btn-menu"/>
-            <nav className="navbar">   
-                <label htmlFor="btn-menu">&#9776;</label>  
-                <div className="search">
-                    <form action="">
-                        <input type="text" name="Search" size="20"/>
-                        <button><img src={search} alt="search"/></button>
-                    </form>
-                </div>     
+            <nav className="navbar">                         
                 <ul className="nav-links">
                     <Link to="/popular"><li>Popular</li></Link>
                     <Link to="/top_rated"><li>Top Rated</li></Link>

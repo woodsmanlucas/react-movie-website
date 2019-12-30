@@ -26,12 +26,12 @@ export function Movie(props){
         <div className="row">
             <div className="col align-self-center">
         <div className="card"> 
-            <img class="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+            <img className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="card-body">
                 <div className="row date info">
-                    <span class="col">Release Date: {Moment(movie.release_date).format('MMM d YYYY')}</span>
-                    <span class="col">Budget: {movie.budget}</span>
-                    <span class="col">{movie.tagline}</span>
+                    <span className="col">Release Date: {Moment(movie.release_date).format('MMM d YYYY')}</span>
+                    <span className="col">Budget: {movie.budget}</span>
+                    <span className="col">{movie.tagline}</span>
                 </div>
                 <ul className="menu-content">
                     <li><a href="#" className="fa fa-heart-o"><span>{movie.vote_average}</span></a></li>

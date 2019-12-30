@@ -14,12 +14,16 @@ function App(){
     useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites))}, [favorites])
 
     function getFavorites(id) {
-        if(id > 0){
-            setFavorites([...favorites, id])
-        } else {
-            setFavorites(favorites.filter((value) => {return -id==value}))
-        }
-        console.log(favorites)
+
+            if(id > 0){
+                if(favorites.indexOf(id) === -1){
+                    setFavorites([...favorites, id])
+                }
+            } else {
+                setFavorites(favorites.filter((value) => {return -id==value}))
+            }
+            console.log(favorites)        
+        
     }
 
     return(

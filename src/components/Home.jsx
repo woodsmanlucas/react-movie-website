@@ -27,18 +27,16 @@ function Home(props){
 
     function getFavorites (favorites) {
         props.getValue(favorites)
+        console.log(favorites)
     }
-
-
 
     return(
         <div className="main-container black">
             <div className="container">
             <div className="d-lg-flex flex-wrap justify-content-end">
                 {movies.map(movie => (
-
                     <div className="col ml-auto" key = {movie.id}>
-                        <div className="card mb-4  movie">
+                        <div className="card mb-4 movie">
                             { (movie.poster_path == null) ? (<img src="https://www.nyfa.edu/student-resources/wp-content/uploads/2015/03/Blank-Movie-Poster1.jpg" alt="generic image" />)
                             : (<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />) }
                             <div className="card-body">

@@ -24,7 +24,7 @@ function Favorites (props){
 
     async function getMovie(id){
         const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-        data.json().then(function(value) {     
+        data.json().then(function(value) {    
         setMovies(movies => [...movies, value])
           })
       }

@@ -35,53 +35,27 @@ h2 {
   display: none;
 }
 
-.search{
-  text-align: right;
-}
-
-.search input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 45px;
-  border-radius: 5px;
-  font-size: 25px;
-}
-
-.search img{
-  width: 100%;
-}
-
-.search button{
-  padding: 0;
-  width: 2.3em;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
 label{
   font-size: 50px;
   position: fixed;
   left: 20px;
-  top: 40px;
+  top: -10px;
   transition: 0.5s;
   cursor: pointer;
   color:rgba(255,255,255);
-  z-index: 888;
 }
 
 .nav-links{
   list-style:none;
   background:rgb(119, 215, 185);
   width:125px;
-  padding-top:30px;
+  padding-top:40px;
   position:fixed;
   height: 100vh;
   left:-180px;
   top: 0;
   transition:0.5s;
-  z-index: 888;
+  z-index: 2;
 }
 
 .nav-links a:hover{
