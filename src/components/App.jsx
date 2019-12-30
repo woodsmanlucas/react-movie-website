@@ -32,7 +32,7 @@ function App(){
             <Navigation />
             {/* {console.log(favorites)}
             {console.log(localStorage.favorites)} */}
-            <Switch>       
+            <Switch>        
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
                 <Route path="/movie/:id" component={Movie} />
@@ -44,7 +44,7 @@ function App(){
                 </Route> 
                 <Route default >
                     <Home getValue={getFavorites} />
-                </Route>             
+                </Route>
             </Switch>
             </div>            
         </Router>        

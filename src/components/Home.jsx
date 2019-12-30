@@ -16,8 +16,7 @@ function Home(props){
     let {list} = useParams()
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
-    useEffect(() => {fetchMovies()},
-    [list])
+    useEffect(() => {fetchMovies()}, !search ? [list] : [search])
 
     const fetchMovies = async () => {
         let url
@@ -25,17 +24,15 @@ function Home(props){
         if (list == null){
             list = 'popular'
         }
-        console.log(search)
+
         if(search === ""){
             url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
         }else{
-            list = 'search'
             url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${search}`
         }
         
         const response = await axios.get(url)
         setMovies(response.data.results.slice(0,12))
-        console.log(response.data.results.slice(0,12))
     }
 
     function getFavorites (favorites) {
