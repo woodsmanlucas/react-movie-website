@@ -17,22 +17,20 @@ function App(){
         if(id > 0){
             setFavorites([...favorites, id])
         } else {
-            setFavorites(favorites.filter((value) => {return -id==value}))
+            setFavorites(favorites.filter((value) => {return (-id)!==value}))
         }
-        console.log(favorites)
     }
 
     return(
         <Router>            
             <div className="App black">
             <Navigation />
-            {console.log(favorites)}
             <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
                 <Route path="/movie/:id" component={Movie} />
                 <Route path="/favorites" >
-                    <Favorites movies={favorites} />
+                    <Favorites movies={favorites} getValue={getFavorites} />
                 </Route>
                 <Route path="/:list"  >
                     <Home getValue={getFavorites} />
