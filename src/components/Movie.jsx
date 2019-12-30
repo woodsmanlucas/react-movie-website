@@ -9,7 +9,8 @@ import RatingStars from './RatingStars'
 export function Movie(props){
     const [movie, setMovie] = useState({})
     let {id} = useParams()
-    const [displayrating, setDisplayRating] = useState(localStorage.getItem('stars'+id) || false)
+    const rated = JSON.parse(localStorage.getItem('StarObject')) || {}
+    const [displayrating, setDisplayRating] = useState(rated[id] || false)
 
     useEffect(() => {
         getMovie(id)
@@ -38,8 +39,8 @@ export function Movie(props){
 
     return (
         <div className="container">
-        <div className="row">
-            <div className="col align-self-center">
+        <div className="row ml-auto mr-auto">
+            <div className="col align-self-right">
         <div className="card"> 
             <img className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="card-body">

@@ -5,11 +5,11 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 function RatingStars (props) {
     
-    const [stars, setStars] = useState(props.rating)
+    const [stars, setStars] = useState(props.rating || 0)
     const [starsArray, setStarsArray] = useState(getStarsArray(stars))
 
     useEffect(() => {    getStarsArray(stars)
-        localStorage.setItem('stars'+props.id, stars)}, [stars])
+        props.getStars(stars, props.id)}, [stars])
 
     function handleClick () {
         let temp = stars

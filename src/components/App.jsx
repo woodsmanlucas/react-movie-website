@@ -8,13 +8,18 @@ import { Movie } from './Movie'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Favorites from "./Favorites"
 import SearchMovie from "./SearchMovie"
+import Ratings from './Ratings'
 
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
-    const [starObject, setStarObject] = useState(JSON.parse(localStorage.getItem('StarObject')) || {})
+    const [rated, setRated] = useState(JSON.parse(localStorage.getItem('StarObject')) || {})
 
     useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites)) 
 }, [favorites])
+
+    useEffect(() => {
+        localStorage.setItem('StarObject', JSON.stringify(rated))
+    }, [rated])
 
     function getFavorites(id) {
             if(id > 0){
@@ -26,10 +31,11 @@ function App(){
             }
     }
 
-    function storeStars(star, id){
-        let tempObject = starObject
-        tempObject[id] = star
-        localStorage.setItem('StarObject', JSON.stringify(tempObject))
+    function storeStars(stars, id){
+        let tempObject = rated
+        tempObject[id] = stars
+        setRated(tempObject)
+        localStorage.setItem('StarObject', JSON.stringify(rated))
     }
 
     return(
@@ -41,10 +47,13 @@ function App(){
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
                 <Route path="/movie/:id" >
-                    <Movie getStars={storeStars} ratings={starObject} />
+                    <Movie getStars={storeStars} ratings={rated} />
                 </Route>
                 <Route path="/favorites" >
                     <Favorites movies={favorites} getValue={getFavorites} />
+                </Route>
+                <Route path="/ratings">
+                    <Ratings movies={rated} getValue={getFavorites} getStars={storeStars} />
                 </Route>
                 <Route path="/:list"  >
                     <Home getValue={getFavorites} />

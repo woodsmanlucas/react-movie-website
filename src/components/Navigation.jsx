@@ -18,7 +18,9 @@ function Navigation(props){
                     <Link to="/upcoming"><li>Upcoming Movies</li></Link>
                     <Link to="/about"><li>About</li></Link>                        
                     <Link to="/discover"><li>Discover</li></Link>
-                    <Link to="/favorites"><li>Favorites</li></Link>                                     
+                    <Link to="/favorites"><li>Favorites</li></Link>
+                    <Link to="/ratings"><li>My Rated Movies</li></Link>                                     
+                                     
                 </ul>
             </nav>
         </div>        
