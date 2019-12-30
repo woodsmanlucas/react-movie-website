@@ -7,6 +7,7 @@ import About from "./About"
 import { Movie } from './Movie'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Favorites from "./Favorites"
+import SearchMovie from "./SearchMovie"
 
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
