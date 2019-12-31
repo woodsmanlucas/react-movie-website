@@ -12,22 +12,16 @@ function Home(props){
 
     const [movies, setMovies] = useState([])
     let {list} = useParams()
+    list = list || 'popular'
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
-    useEffect(() => {fetchMovies()}, !props.getSearch ? [list] : [props.getSearch])
+    useEffect(() => {fetchMovies()}, [list])
 
     const fetchMovies = async () => {
+        
+        console.log(list)
         let url
-
-        if (list == null){
-            list = 'popular'
-        }
-
-        if(props.getSearch === ""){
-            url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
-        }else{
-            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch}`
-        }
+        url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
         
         const response = await axios.get(url)
         setMovies(response.data.results.slice(0,12))

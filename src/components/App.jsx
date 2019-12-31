@@ -63,9 +63,9 @@ function App(){
                 <Route path="/:list"  >
                     <Home getValue={getFavorites} getSearch={search}/>
                 </Route> 
-                {/* <Route default >
-                    <Home getValue={getFavorites} />
-                </Route> */}
+                <Route default >
+                    <Home getValue={getFavorites} list="popular"/>
+                </Route>
             </Switch>
             </div>            
         </Router>        

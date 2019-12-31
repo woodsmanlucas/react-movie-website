@@ -49,21 +49,21 @@ function Ratings(props) {
             <img className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="card-body">
                 <div className="row date info">
-                    <span className="col">Release Date: {Moment(movie.release_date).format('MMM d YYYY')}</span>
-                    <span className="col">Budget: {movie.budget}</span>
-                    <span className="col">{movie.tagline}</span>
+                    <span className="col">{Moment(movie.release_date).format('MMM d YYYY')}</span>
+                    <span className="col"><RatingStars id={movie.id} getStars={getStars} rating={props.movies[movie.id]} /></span>
                 </div>
                 <ul className="menu-content">
                     <FavoriteButton getValue={getFavorites} id={movie.id} />
                     <li><a href="#" className="fa fa-heart-o"><span>{movie.vote_average}</span></a></li>
                 </ul>
             </div>
-             <RatingStars id={movie.id} getStars={getStars} rating={props.movies[movie.id]} />
-            <div className="card-text">
+             <div className="card-text">
                 <div className="content">
-                    <p className="text">{movie.overview}</p>
+                   <h3 className="text-center">{movie.title}</h3>
+                    <p className="text">{movie.overview.substring(0, 120) + "..."}</p>
+                    <a href={`/movie/${movie.id}`} className="button mb-3">Read more</a>
                 </div>
-             </div>
+            </div>
         </div>
         </div>
                         ))                            

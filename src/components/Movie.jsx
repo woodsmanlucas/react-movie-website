@@ -9,7 +9,7 @@ import RatingStars from './RatingStars'
 export function Movie(props){
     const [movie, setMovie] = useState({})
     let {id} = useParams()
-    const rated = JSON.parse(localStorage.getItem('StarObject')) || {}
+    const rated = (JSON.parse(localStorage.getItem('StarObject')) || {})
     const [displayrating, setDisplayRating] = useState(rated[id] || false)
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export function Movie(props){
         <div className="row ml-auto mr-auto">
             <div className="col align-self-right">
         <div className="card"> 
-            <img className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
+            <img className="card-img-top movie" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="card-body">
                 <div className="row date info">
                     <span className="col">Release Date: {Moment(movie.release_date).format('MMM d YYYY')}</span>
