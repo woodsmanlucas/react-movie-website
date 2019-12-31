@@ -9,7 +9,7 @@ import RatingStars from './RatingStars'
 export function Movie(props){
     const [movie, setMovie] = useState({})
     let {id} = useParams()
-    const rated = JSON.parse(localStorage.getItem('StarObject')) || {}
+    const rated = (JSON.parse(localStorage.getItem('StarObject')) || {})
     const [displayrating, setDisplayRating] = useState(rated[id] || false)
 
     useEffect(() => {

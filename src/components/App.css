@@ -46,6 +46,8 @@ label{
 }
 
 .nav-links{
+  display: none;
+  margin: 0;
   list-style:none;
   background:rgb(119, 215, 185);
   width:125px;
@@ -53,7 +55,7 @@ label{
   padding-left: 10px;
   position:fixed;
   height: 100vh;
-  left: 0;
+  left: 0px;
   top: 0;
   transition:0.5s;
   z-index: 2;
@@ -79,7 +81,7 @@ label{
 }
 
 #btn-menu:checked + .navbar ul{
-  left:0;
+  display: block
 }
 #btn-menu:checked + .navbar label{
   left:170px;
