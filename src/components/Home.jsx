@@ -42,7 +42,7 @@ function Home(props){
             <div className="container">
                 <div className="d-lg-flex flex-wrap justify-content-end">
                     {movies.map(movie => (
-                        <div className="col ml-auto" key = {movie.id}>
+                        <div className="col-sm-4 ml-auto" key = {movie.id}>
                             <div className="card mb-4 movie">
                                 { (movie.poster_path == null) ? (<img src="https://www.nyfa.edu/student-resources/wp-content/uploads/2015/03/Blank-Movie-Poster1.jpg" alt="generic image" />)
                                 : (<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />) }
@@ -57,13 +57,13 @@ function Home(props){
                                     </div>
                                     <div className="card-text">
                                         <div className="content">
-                                            <h3>{movie.title}</h3>
+                                            <h3 className="text-center">{movie.title}</h3>
                                             <p className="text">{movie.overview.substring(0, 120) + "..."}</p>
-                                            <a href={`/movie/${movie.id}`} className="button">Read more</a>
+                                            <a href={`/movie/${movie.id}`} className="button mb-3">Read more</a>
                                         </div>
                                     </div>
                                 </div>
-                        </div>
+                        </div> 
                     ))}
                 </div>
             </div>
