@@ -23,7 +23,7 @@ function App(){
                 // setFavorites(favorites.filter((value) => {return -id==value}))
                 setFavorites(favorites.filter((value) => { return value !== -id}))
             }
-            console.log(favorites)                
+            // console.log(favorites)                
     }
 
     return(
@@ -42,9 +42,9 @@ function App(){
                 <Route path="/:list"  >
                     <Home getValue={getFavorites} />
                 </Route> 
-                <Route default >
+                {/* <Route default >
                     <Home getValue={getFavorites} />
-                </Route>
+                </Route> */}
             </Switch>
             </div>            
         </Router>        

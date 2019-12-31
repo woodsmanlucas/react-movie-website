@@ -4,7 +4,7 @@ import { faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 
 function FavoriteButton (props) {
-    
+    console.log(props)
     const [heart, setHeart] = useState(false)
 
     function handleClick () {
