@@ -195,8 +195,16 @@ body{
 }
 
 .movie{
-  width: 450px;
+  width: 350px;
   margin: 0 auto;
+}
+
+img{
+  height: 400px;
+}
+
+.text-center{
+  height: 70px;
 }
 
 .black{

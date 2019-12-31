@@ -13,6 +13,7 @@ import Ratings from './Ratings'
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
     const [rated, setRated] = useState(JSON.parse(localStorage.getItem('StarObject')) || {})
+    const [search, setSearch] = useState("")
 
     useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites)) 
 }, [favorites])
@@ -22,13 +23,13 @@ function App(){
     }, [rated])
 
     function getFavorites(id) {
-            if(id > 0){
-                if(favorites.indexOf(id) === -1){
-                    setFavorites([...favorites, id])
-                }
-            } else {
-                setFavorites(favorites.filter((value) => { return value !== -id}))
+        if(id > 0){
+            if(favorites.indexOf(id) === -1){
+                setFavorites([...favorites, id])
             }
+        } else {
+            setFavorites(favorites.filter((value) => { return value !== -id}))
+        }
     }
 
     function storeStars(stars, id){
@@ -38,11 +39,15 @@ function App(){
         localStorage.setItem('StarObject', JSON.stringify(rated))
     }
 
+    function getMovies(movie){
+        setSearch(movie)
+    }
+
     return(
         <Router>
             <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />            
             <div className="App black">
-            <Navigation />
+            <Navigation getValue={getMovies}/>
             <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
@@ -56,11 +61,11 @@ function App(){
                     <Ratings movies={rated} getValue={getFavorites} getStars={storeStars} />
                 </Route>
                 <Route path="/:list"  >
-                    <Home getValue={getFavorites} />
+                    <Home getValue={getFavorites} getSearch={search}/>
                 </Route> 
-                <Route default >
+                {/* <Route default >
                     <Home getValue={getFavorites} />
-                </Route>
+                </Route> */}
             </Switch>
             </div>            
         </Router>        
