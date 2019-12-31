@@ -64,9 +64,9 @@ function Home(props){
                                 </div>
                         </div> 
                     ))
-                    :
+                :
                     (<h2>Sorry!!! There were no results for your search</h2>)
-                    }
+                }
                 </div>
             </div>
         </div>
