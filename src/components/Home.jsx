@@ -11,12 +11,10 @@ import SearchMovie from "./SearchMovie"
 function Home(props){
 
     const [movies, setMovies] = useState([])
-    const [query, setQuery] = useState("")
-    const [search, setSearch] = useState("")
     let {list} = useParams()
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
-    useEffect(() => {fetchMovies()}, !search ? [list] : [search])
+    useEffect(() => {fetchMovies()}, !props.getSearch ? [list] : [props.getSearch])
 
     const fetchMovies = async () => {
         let url
@@ -25,10 +23,10 @@ function Home(props){
             list = 'popular'
         }
 
-        if(search === ""){
+        if(props.getSearch === ""){
             url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
         }else{
-            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${search}`
+            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch}`
         }
         
         const response = await axios.get(url)
@@ -36,14 +34,11 @@ function Home(props){
     }
 
     function getFavorites (favorites) {
-        props.getValue(favorites)
-        // console.log(favorites)
+        props.getValue(favorites)        
     }
 
     return(
         <div className="main-container black">
-            <input type="text" value = {query} onChange = {event => setQuery(event.target.value)}/>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="button" onClick = {() => setSearch(query)}>Search</button>
             <div className="container">
                 <div className="d-lg-flex flex-wrap justify-content-end">
                     {movies.map(movie => (

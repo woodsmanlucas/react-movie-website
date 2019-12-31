@@ -8,39 +8,60 @@ import { Movie } from './Movie'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Favorites from "./Favorites"
 import SearchMovie from "./SearchMovie"
+import Ratings from './Ratings'
 
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
+    const [rated, setRated] = useState(JSON.parse(localStorage.getItem('StarObject')) || {})
+    const [search, setSearch] = useState("")
 
-    useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites))}, [favorites])
+    useEffect(() => {localStorage.setItem('favorites', JSON.stringify(favorites)) 
+}, [favorites])
+
+    useEffect(() => {
+        localStorage.setItem('StarObject', JSON.stringify(rated))
+    }, [rated])
 
     function getFavorites(id) {
-            if(id > 0){
-                if(favorites.indexOf(id) === -1){
-                    setFavorites([...favorites, id])
-                }
-            } else {
-                // setFavorites(favorites.filter((value) => {return -id==value}))
-                setFavorites(favorites.filter((value) => { return value !== -id}))
+        if(id > 0){
+            if(favorites.indexOf(id) === -1){
+                setFavorites([...favorites, id])
             }
-            // console.log(favorites)                
+        } else {
+            setFavorites(favorites.filter((value) => { return value !== -id}))
+        }
+    }
+
+    function storeStars(stars, id){
+        let tempObject = rated
+        tempObject[id] = stars
+        setRated(tempObject)
+        localStorage.setItem('StarObject', JSON.stringify(rated))
+    }
+
+    function getMovies(movie){
+        setSearch(movie)
     }
 
     return(
-        <Router>            
+        <Router>
+            <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />            
             <div className="App black">
-            <Navigation />
-            {/* {console.log(favorites)}
-            {console.log(localStorage.favorites)} */}
-            <Switch>        
+            <Navigation getValue={getMovies}/>
+            <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
-                <Route path="/movie/:id" component={Movie} />
+                <Route path="/movie/:id" >
+                    <Movie getStars={storeStars} ratings={rated} />
+                </Route>
                 <Route path="/favorites" >
-                    <Favorites movies={favorites} />
+                    <Favorites movies={favorites} getValue={getFavorites} />
+                </Route>
+                <Route path="/ratings">
+                    <Ratings movies={rated} getValue={getFavorites} getStars={storeStars} />
                 </Route>
                 <Route path="/:list"  >
-                    <Home getValue={getFavorites} />
+                    <Home getValue={getFavorites} getSearch={search}/>
                 </Route> 
                 {/* <Route default >
                     <Home getValue={getFavorites} />

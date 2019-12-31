@@ -17,7 +17,6 @@ function Favorites (props){
         // console.log(props.movies)
             props.movies.forEach(id => {
                 getMovie(id)
-                // console.log(id)
             });
 
     }
@@ -31,7 +30,6 @@ function Favorites (props){
 
     function getFavorites(favorite){
         props.getValue(favorite)
-        // console.log(favorite)
     }
 
 
