@@ -19,7 +19,7 @@ function SearchMovie(props){
     const handleSearch = () =>{
         setSearch(query)
         props.getValue(search)
-        console.log(query)
+        setQuery("")
     }
 
     return(
