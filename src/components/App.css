@@ -5,7 +5,7 @@
   box-sizing:border-box;
 }
 
-img{
+img.movie{
   max-width:100%;
   height:auto;
 }
