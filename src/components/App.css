@@ -194,6 +194,10 @@ body{
   font-weight: 700;
 }
 
+input.search-bar{
+  margin-left: 135px
+}
+
 .movie{
   width: 350px;
   margin: 0 auto;
