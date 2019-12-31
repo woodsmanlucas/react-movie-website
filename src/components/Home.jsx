@@ -46,7 +46,7 @@ function Home(props){
                                     </div>
                                     <ul className="menu-content">
                                         <FavoriteButton getValue={getFavorites} id={movie.id} />
-                                        <li><span>{movie.vote_average}</span></li>
+                                        <li><span>{movie.vote_average} / 10</span></li>
                                     </ul>
                                     </div>
                                     <div className="card-text">

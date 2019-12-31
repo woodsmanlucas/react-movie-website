@@ -145,11 +145,12 @@ body{
   top: 20px;
   font-size: 15px;
   color: white;
+  text-shadow: blueviolet;
 }
 
 .menu-content button{
   position: relative;
-  right: 2em;
+  right: 3.5em;
 }
 
 .data {
