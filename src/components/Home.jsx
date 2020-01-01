@@ -6,12 +6,19 @@ import "./App.css"
 import "../styles/bootstrap.min.css"
 import FavoriteButton from './FavoriteButton'
 import { tsPropertySignature } from "@babel/types"
+import { useLocation } from "react-router-dom";
 import SearchMovie from "./SearchMovie"
+
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
 
 function Home(props){
 
+    let query = useQuery();
     const [movies, setMovies] = useState([])
-    let {list} = useParams()
+    let {list, search} = useParams()
+    console.log(search)
     list = list || 'popular'
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
 
@@ -23,8 +30,8 @@ function Home(props){
 
         url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
 
-        if(props.getSearch){
-            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch}`
+        if(props.getSearch || query.get("search")){
+            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch || query.get("search")}`
         }
         
         const response = await axios.get(url)
