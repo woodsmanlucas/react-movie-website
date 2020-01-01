@@ -64,7 +64,7 @@ function App(){
                     <Home getValue={getFavorites} getSearch={search}/>
                 </Route> 
                 <Route default >
-                    <Home getValue={getFavorites} list="popular"/>
+                    <Home getValue={getFavorites}/>
                 </Route>
             </Switch>
             </div>            
