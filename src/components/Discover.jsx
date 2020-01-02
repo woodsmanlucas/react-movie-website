@@ -47,6 +47,14 @@ function Discover(props){
         props.getValue(favorites)        
     }
 
+    function getChecked (checked){
+        console.log(checked)
+    }
+
+    function getNames(names){
+        console.log(names)
+    }
+
     return(
         <div className="main-container black">
             <div className="discover-menu">
@@ -54,7 +62,7 @@ function Discover(props){
                     <p className="years-label">Years</p>            
                     <Select onChange={handleSelectYear} options={yearOptions} />
                 </div>
-                <Checkbox />
+                <Checkbox getChecked={getChecked} getNames={getNames}/>
             </div>
             <div className="container">
                 <div className="d-lg-flex flex-wrap justify-content-center">
