@@ -24,7 +24,8 @@ section, main, footer, ul, li{
 }
 
 h2 {
-  color: white
+  color: white;
+  text-align: center;
 }
 
 /* Ends of Reset */
@@ -247,4 +248,39 @@ img{
   .movie{
     width: 80vw;
   }
+}
+
+/*Discover Styles Page*/
+
+.discover-menu{
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: left;
+  position: relative;
+  top: 0;
+  left: 125px;
+  border: 2px solid white;
+  width: 82.5%;
+  padding: 10px 0 10px 10px;
+}
+
+.years{
+  width: 150px;
+  margin: 10px;
+}
+
+.years-label{
+  text-align: center;
+  width: 150px;
+  background-color: white;
+}
+
+.genres{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox{
+  margin: 5px;
 }

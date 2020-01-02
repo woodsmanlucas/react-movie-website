@@ -63,7 +63,7 @@ function App(){
                 <Route path="/ratings">
                     <Ratings movies={rated} getValue={getFavorites} getStars={storeStars} />
                 </Route>
-                <Route path="/:list"  >
+                <Route path="/:list">
                     <Home getValue={getFavorites} getSearch={search}/>
                 </Route> 
                 <Route default >
