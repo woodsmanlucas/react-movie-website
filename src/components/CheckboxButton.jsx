@@ -25,7 +25,7 @@ function Checkbox(props){
         const response = await axios.get(url);
         setCheckbox(response.data.genres)
         setupChecked(response.data.genres)
-        props.getNames(response.data.genres.map((box) => (box.name)))
+        props.getIds(response.data.genres.map((box) => (box.id)))
     }
 
     function setupChecked(list){

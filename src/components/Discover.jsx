@@ -18,12 +18,14 @@ function Discover(props){
     const [year, setYear] = useState({})
     const [movies, setMovies] = useState([])
     const [genres, setGenres] = useState([])
-    const [checked, setChecked] = useState([])
+    const [checked, setChecked] = useState("")
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
     useEffect(() => {
         lenghtOfTheArray()
     }, [])
+
+    useEffect(() => {handleSelectGenre()}, [checked])
 
     const lenghtOfTheArray = async () => {
         let now = new Date()
@@ -38,6 +40,17 @@ function Discover(props){
         setYearOptions(years)
     }
 
+    const handleSelectGenre = async () =>{
+        if(checked != ""){
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${checked}`
+            console.log(url)
+            const response = await axios.get(url);
+            console.log(response.data.results)
+            setMovies(response.data.results.slice(0,12))
+        }
+    }
+
+
     const handleSelectYear = async (selected) => {
         setYear(selected);
         const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&release_date.gte=${selected.id}`
@@ -50,19 +63,22 @@ function Discover(props){
     }
 
     function getChecked (array){
-        console.log(array)
         let tempChecked = []
         array.forEach((box, index) => {
             if(box){
-                tempChecked.push(genres[index])
+                if(tempChecked == ""){
+                    tempChecked = genres[index]
+                }
+                else{
+                    tempChecked = tempChecked + "," + genres[index]
+                }
             }
         })
-        console.log(tempChecked)
         setChecked(tempChecked)
     }
 
-    function getNames(names){
-        setGenres(names)
+    function getIds(Ids){
+        setGenres(Ids)
     }
 
     return(
@@ -72,7 +88,7 @@ function Discover(props){
                     <p className="years-label">Years</p>            
                     <Select onChange={handleSelectYear} options={yearOptions} />
                 </div>
-                <Checkbox getChecked={getChecked} getNames={getNames}/>
+                <Checkbox getChecked={getChecked} getIds={getIds}/>
             </div>
             <div className="container">
                 <div className="d-lg-flex flex-wrap justify-content-center">
