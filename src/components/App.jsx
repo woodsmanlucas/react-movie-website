@@ -8,6 +8,7 @@ import { Movie } from './Movie'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Favorites from "./Favorites"
 import Ratings from './Ratings'
+import Genre from './Genre'
 
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
@@ -50,6 +51,9 @@ function App(){
             <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
+                <Route path="/genres/:id" >
+                    <Genre />
+                </Route>
                 <Route path="/movie/:id" >
                     <Movie getStars={storeStars} ratings={rated} />
                 </Route>
