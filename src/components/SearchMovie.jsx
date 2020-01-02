@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import {Redirect} from "react-router"
 import "./App.css"
 import "../styles/bootstrap.min.css"
-import { Link } from "react-router-dom"
 
 function SearchMovie(props){
 

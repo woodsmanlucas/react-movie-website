@@ -45,7 +45,7 @@ function Home(props){
     return(
         <div className="main-container black">
             <div className="container">
-                <div className="d-lg-flex flex-wrap justify-content-end">
+                <div className="d-lg-flex flex-wrap justify-content-center">
                 {(movies.length !== 0) ? 
                     movies.map(movie => (
                         <div className="col ml-auto" key = {movie.id}>
