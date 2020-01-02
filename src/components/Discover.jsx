@@ -17,6 +17,8 @@ function Discover(props){
     const [yearOptions, setYearOptions] = useState([])
     const [year, setYear] = useState({})
     const [movies, setMovies] = useState([])
+    const [genres, setGenres] = useState([])
+    const [checked, setChecked] = useState([])
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
     
     useEffect(() => {
@@ -47,12 +49,20 @@ function Discover(props){
         props.getValue(favorites)        
     }
 
-    function getChecked (checked){
-        console.log(checked)
+    function getChecked (array){
+        console.log(array)
+        let tempChecked = []
+        array.forEach((box, index) => {
+            if(box){
+                tempChecked.push(genres[index])
+            }
+        })
+        console.log(tempChecked)
+        setChecked(tempChecked)
     }
 
     function getNames(names){
-        console.log(names)
+        setGenres(names)
     }
 
     return(
