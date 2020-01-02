@@ -31,7 +31,7 @@ function Home(props){
         url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`
 
         if(props.getSearch || query.get("search")){
-            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch || query.get("search")}`
+            url = `https://api.themoviedb.org/3/search/movie?api_key=47c4adc75b16f23db3cf78e4870a4296&query=${props.getSearch || query.get("search")}`            
         }
         
         const response = await axios.get(url)
