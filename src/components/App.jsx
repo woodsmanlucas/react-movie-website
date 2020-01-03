@@ -51,9 +51,6 @@ function App(){
             <Switch>       
                 <Route path="/about" component={About}/>
                 <Route path="/discover" component={Discover} />
-                <Route path="/genres/:id" >
-                    <Genre />
-                </Route>
                 <Route path="/movie/:id" >
                     <Movie getStars={storeStars} ratings={rated} />
                 </Route>
