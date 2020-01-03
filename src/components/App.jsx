@@ -8,7 +8,6 @@ import { Movie } from './Movie'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Favorites from "./Favorites"
 import Ratings from './Ratings'
-import Genre from './Genre'
 
 function App(){
     const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
@@ -33,16 +32,22 @@ function App(){
     }
 
     function storeStars(stars, id){
-        let tempObject = rated
-        tempObject[id] = stars
-        setRated(tempObject)
+        if(id > 0){
+            let tempObject = rated
+            tempObject[id] = stars
+            setRated(tempObject)
+        } else if(id < 0){
+            let tempObject = rated
+            delete tempObject[-id]
+            console.log(tempObject)
+        }
         localStorage.setItem('StarObject', JSON.stringify(rated))
     }
 
     function getMovies(movie){
         setSearch(movie)
     }
-    handleSelectGenre
+
     return(
         <Router>
             <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />            

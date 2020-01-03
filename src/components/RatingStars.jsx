@@ -40,16 +40,22 @@ function RatingStars (props) {
         return tempStars
     }
 
+    function unrate(){
+        props.getStars(stars, -props.id)
+        getStarsArray(0)
+    }
+
     return (
-    <li>
+    <div>
         <button className="Rating" onClick={() => handleClick()} >
             {starsArray.map( (star) => {return (star) ? 
                  <FontAwesomeIcon icon={faStarSolid} color="black" />
                  :
                  <FontAwesomeIcon icon={faStarRegular} color="black" />
             })}
-    </button>
-   </li>
+        </button>
+        <button className="Rating" onClick={unrate}>Unrate</button>
+   </div>
     )
 }
 

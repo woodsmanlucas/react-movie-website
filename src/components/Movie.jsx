@@ -26,6 +26,9 @@ export function Movie(props){
 
         function getStars (stars, id){
             props.getStars(stars, id)
+            if(id < 0){
+                setDisplayRating(false)
+            }
         }
 
         function getFavorites (favorites) {

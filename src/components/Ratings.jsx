@@ -14,10 +14,7 @@ function Ratings(props) {
       }, [props.movies])
 
     function createMoviesArray(){
-            Object.keys(props.movies).forEach(function (id, stars) {
-                getMovie(id)
-            });
-
+            Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
     }
 
     async function getMovie(id){
@@ -31,7 +28,6 @@ function Ratings(props) {
 
     function getFavorites(favorite){
         props.getValue(favorite)
-        // console.log(favorite)
     }
 
     function getStars (stars, id){
