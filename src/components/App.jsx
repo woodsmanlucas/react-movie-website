@@ -42,7 +42,7 @@ function App(){
     function getMovies(movie){
         setSearch(movie)
     }
-
+    handleSelectGenre
     return(
         <Router>
             <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />            
