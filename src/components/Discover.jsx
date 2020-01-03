@@ -25,7 +25,7 @@ function Discover(props){
         lenghtOfTheArray()
     }, [])
 
-    useEffect(() => {handleSelectGenre()}, [checked])
+    useEffect(() => {handleSelect()}, [checked, year])
 
     const lenghtOfTheArray = async () => {
         let now = new Date()
@@ -40,22 +40,31 @@ function Discover(props){
         setYearOptions(years)
     }
 
-    const handleSelectGenre = async () =>{
-        if(checked != ""){
-            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${checked}`
+    const handleSelect = async () =>{
+        if(checked != "" && Object.entries(year).length !== 0){
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&primary_release_year=${year.id}&with_genres=${checked}`
             console.log(url)
             const response = await axios.get(url);
-            console.log(response.data.results)
             setMovies(response.data.results.slice(0,12))
+            console.log("I give up")
+        } else if(checked != ""){
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${checked}`
+            const response = await axios.get(url);
+            setMovies(response.data.results.slice(0,12))
+        } else if (Object.entries(year).length !== 0){
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&primary_release_year=${year.id}`
+            console.log(url)
+            const response = await axios.get(url);
+            setMovies(response.data.results.slice(0,12))
+            console.log("it works...")
+            console.log("               kind of")
         }
     }
 
 
+
     const handleSelectYear = async (selected) => {
         setYear(selected);
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&release_date.gte=${selected.id}`
-        const response = await axios.get(url);
-        setMovies(response.data.results.slice(0,12))
       }
 
     function getFavorites (favorites) {

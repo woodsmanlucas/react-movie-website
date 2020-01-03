@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react"
-import Moment from "moment"
-import {useParams} from "react-router"
 import axios from "axios"
 import "./App.css"
 import "../styles/bootstrap.min.css"
-import FavoriteButton from './FavoriteButton'
-import { tsPropertySignature } from "@babel/types"
-import { useLocation } from "react-router-dom";
-import SearchMovie from "./SearchMovie"
-import Select from "react-select";
+
 
 function Checkbox(props){
 
@@ -32,7 +26,6 @@ function Checkbox(props){
         let tempChecked = []
         list.forEach(() => tempChecked.push(false))
         setChecked(tempChecked)
-        console.log(tempChecked)
     }
 
     const handleCheckbox = (event, index) => {
