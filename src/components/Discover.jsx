@@ -68,7 +68,8 @@ function Discover(props){
                     setMovies(response.data.results.slice(0,12))
                     setLoading(false)
                 } 
-            }else if (sortBy.value == "rated"){
+            } else if (sortBy.value == "rated"){
+                console.log("hello")
                 setMovies([])
                 Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
             }
@@ -79,20 +80,23 @@ function Discover(props){
 
     async function getMovie(id){
         const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-        data.json().then(function(value) {    
-        setMovies(movies => [...movies, value])
+        data.json().then(function(value) {
+            if(checkMovieGenres(value)){
+                setMovies(movies => [...movies, value])
+            }    
         })
       }
 
     function checkMovieGenres(movie){
         let list = []
+        if(checkedArray == []){
+            return true
+        }
         console.log(checkedArray)
-        checkedArray.forEach((checkedGenre) => {
-            movie.genre.forEach((genre) => list.push(genre.id.includes(checkedGenre)))
-        })
+            movie.genres.forEach((genre) => list.push(checkedArray.includes(genre.id)))
         console.log(list)
         console.log(movie)
-        return list.every((value) => {return value})
+        return list.includes(true)
     }
 
     const handleSelectYear = async (selected) => {
