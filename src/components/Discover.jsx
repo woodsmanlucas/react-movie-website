@@ -113,7 +113,12 @@ function Discover(props){
         let now = new Date()
         now = now.getFullYear()
 
-        for (var i = 1920; i <= now; i++){
+        years.push({
+            label: "None",
+            id: ""
+        })
+
+        for (var i = now; i >= 1920; i--){
             years.push({
                 label: i,
                 id: i
