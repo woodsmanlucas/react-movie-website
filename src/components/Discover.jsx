@@ -27,49 +27,62 @@ function Discover(props){
     const handleSelect = async () =>{
         
         let query
-
+        console.log(sortBy)
         try{
-            if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
-
-                if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
+            if(sortBy.value != "rated"){
+                if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
     
-                    query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
+                    if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
     
-                } else if(checked != "" && Object.entries(year).length !== 0){
+                        query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
     
-                    query = `&primary_release_year=${year.id}&with_genres=${checked}`
+                    } else if(checked != "" && Object.entries(year).length !== 0){
     
-                }else if(checked != "" && sortBy != ""){
+                        query = `&primary_release_year=${year.id}&with_genres=${checked}`
     
-                    query = `&with_genres=${checked}&sort_by=${sortBy.value}`
+                    }else if(checked != "" && sortBy != ""){
     
-                }else if(Object.entries(year).length !== 0 && sortBy != ""){
+                        query = `&with_genres=${checked}&sort_by=${sortBy.value}`
     
-                    query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
+                    }else if(Object.entries(year).length !== 0 && sortBy != ""){
     
-                }else if(checked != ""){
+                        query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
     
-                    query = `&with_genres=${checked}`
+                    }else if(checked != ""){
     
-                }else if(Object.entries(year).length !== 0){
+                        query = `&with_genres=${checked}`
     
-                    query = `&primary_release_year=${year.id}`
+                    }else if(Object.entries(year).length !== 0){
     
-                }else if (sortBy != ""){
+                        query = `&primary_release_year=${year.id}`
     
-                    query = `&sort_by=${sortBy.value}`
+                    }else if (sortBy != ""){
     
-                }
+                        query = `&sort_by=${sortBy.value}`
     
-                const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
-                const response = await axios.get(url);
-                setMovies(response.data.results.slice(0,12))
-                setLoading(false)
+                    }
+    
+                    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
+                    const response = await axios.get(url);
+                    setMovies(response.data.results.slice(0,12))
+                    setLoading(false)
+                } 
+            }else if (sortBy.value == "rated"){
+                setMovies([])
+                Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
             }
         }catch(e){
             console.log(e)
-        }        
+        }
     }
+
+    async function getMovie(id){
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
+        data.json().then(function(value) {    
+        setMovies(movies => [...movies, value])
+        console.log(value)
+          })
+      }
 
 
     const handleSelectYear = async (selected) => {
@@ -103,6 +116,11 @@ function Discover(props){
                 label: "Title (Z-A)",
                 id: 3,
                 value: "original_title.desc"
+            },
+            {
+                label: "My Rated",
+                id: 4,
+                value: "rated"
             }
         )
         setSortByOptions(sortByDisplay)
