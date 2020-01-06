@@ -51,7 +51,7 @@ function Home(props){
                 (
                     (movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> 
                     : 
-                    <h2 className="text-center">Sorry!!! There were no results for your search</h2>
+                    <h2 className="text-center display-message">Sorry!!! There were no results for your search</h2>
                 )
             }              
         </div>

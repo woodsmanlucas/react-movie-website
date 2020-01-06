@@ -114,25 +114,6 @@ body{
   border-bottom-right-radius: 10px;
 }
 
-
-.wrapper {
-  height: 400px;
-  width: 100%;
-  object-fit: scale-down;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.wrapper:hover .menu-content span{
-  transform: translate(0%, +18px);
-  opacity: 1;
-}
-
-.wrapper:hover .data{
-  transform: translateY(0);
-}
-
 .menu-content li{
   position: absolute;
   right: 20px;
@@ -214,6 +195,10 @@ img{
   height: 210px;
 }
 
+.movie-text{
+  height: auto;
+}
+
 .content .badge-pill{
   font-size: 120%;
   cursor: pointer;
@@ -221,7 +206,7 @@ img{
 
 .black{
   background-color: black;
-  min-height: 100vh;
+  min-height: 98vh;
 }
 
 .About{
@@ -245,6 +230,10 @@ img{
 
 .Favorite{
   color: white;
+}
+
+.display-message{
+  padding: 25px;
 }
 
 .Rating{
@@ -303,4 +292,9 @@ img{
 
 .checkbox{
   margin: 5px;
+}
+
+.text-center .rate-button{
+  width: 70px;
+  font-size: 100%;
 }

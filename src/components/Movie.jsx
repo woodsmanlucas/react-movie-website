@@ -5,6 +5,7 @@ import './App.css'
 import Moment from 'moment'
 import FavoriteButton from './FavoriteButton'
 import RatingStars from './RatingStars'
+import NumberFormat from 'react-number-format'
 
 export function Movie(props){
     const [movie, setMovie] = useState({})
@@ -39,7 +40,7 @@ export function Movie(props){
 
 
     return (
-        <div className="container">
+        <div className="container mt-4">
         <div className="row ml-auto mr-auto">
             <div className="col align-self-right">
         <div className="card"> 
@@ -47,7 +48,7 @@ export function Movie(props){
             <div className="card-body">
                 <div className="row date info">
                     <span className="col">Release Date: {Moment(movie.release_date).format('MMM d YYYY')}</span>
-                    <span className="col">Budget: {movie.budget}</span>
+                    <span className="col">Budget: <NumberFormat value={movie.budget} displayType={'text'} thousandSeparator={true} prefix={'$'} /></span>
                     <span className="col">{movie.tagline}</span>
                 </div>
                 <ul className="menu-content">
@@ -58,14 +59,16 @@ export function Movie(props){
             {displayrating && (
                 <RatingStars id={id} getStars={getStars} rating={props.ratings[id]} />
             )}
-            <div className="card-text">
+            <div className="movie-text card-text">
                 <div className="content">
                     <p className="text">{movie.overview}</p>
                 </div>
              </div>
-            {!displayrating && (
-             <button className="btn" onClick={() => handleClick()}>Rate</button>
-            )}
+             <div className="text-center">
+                {!displayrating && (
+                <button className="rate-button badge badge-pill badge-info m-3" onClick={() => handleClick()}>Rate</button>
+                )}
+             </div>            
         </div>
         </div>
         </div>

@@ -39,7 +39,7 @@ function Favorites (props){
         <div className="main-container black">
             {(movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> 
             : 
-            <h2 className="text-center">Sorry you have no favourited movies. Search for a movie to add to your favourites.</h2>} 
+            <h2 className="text-center display-message">Sorry you have no favourited movies. Search for a movie to add to your favourites.</h2>} 
         </div>
     )
 }
