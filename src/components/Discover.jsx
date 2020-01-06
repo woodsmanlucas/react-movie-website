@@ -46,7 +46,6 @@ function Discover(props){
             console.log(url)
             const response = await axios.get(url);
             setMovies(response.data.results.slice(0,12))
-            console.log("I give up")
         } else if(checked != ""){
             const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${checked}`
             const response = await axios.get(url);
@@ -56,8 +55,6 @@ function Discover(props){
             console.log(url)
             const response = await axios.get(url);
             setMovies(response.data.results.slice(0,12))
-            console.log("it works...")
-            console.log("               kind of")
         }
     }
 
