@@ -48,10 +48,10 @@ function RatingStars (props) {
     return (
     <div>
         <button className="Rating" onClick={() => handleClick()} >
-            {starsArray.map( (star) => {return (star) ? 
-                 <FontAwesomeIcon icon={faStarSolid} color="black" />
+            {starsArray.map( (star, index) => {return (star) ? 
+                 <FontAwesomeIcon key={index} icon={faStarSolid} color="black" />
                  :
-                 <FontAwesomeIcon icon={faStarRegular} color="black" />
+                 <FontAwesomeIcon key={index} icon={faStarRegular} color="black" />
             })}
         </button>
         <button className="Rating" onClick={unrate}>Unrate</button>

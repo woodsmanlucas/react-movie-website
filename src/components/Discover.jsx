@@ -16,6 +16,7 @@ function Discover(props){
     const [movies, setMovies] = useState([])
     const [genres, setGenres] = useState([])
     const [checked, setChecked] = useState("")
+    const [checkedArray, setCheckedArray] = useState([])
     const [loading, setLoading] = useState(true)
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
 
@@ -70,15 +71,6 @@ function Discover(props){
             console.log(e)
         }
     }
-
-    async function getMovie(id){
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-        data.json().then(function(value) {    
-        setMovies(movies => [...movies, value])
-        console.log(value)
-          })
-      }
-
 
     const handleSelectYear = async (selected) => {
         setYear(selected);
@@ -150,7 +142,8 @@ function Discover(props){
     }
 
     function getChecked (array){
-        let tempChecked = []
+        let tempChecked = ""
+        let tempCheckedArray = []
         
         array.forEach((box, index) => {
             if(box){
@@ -160,9 +153,12 @@ function Discover(props){
                 else{
                     tempChecked = tempChecked + "," + genres[index]
                 }
+                tempCheckedArray.push(genres[index])
             }
         })
         setChecked(tempChecked)
+        console.log(tempCheckedArray)
+        setCheckedArray(tempCheckedArray)
     }
 
     function getIds(Ids){
