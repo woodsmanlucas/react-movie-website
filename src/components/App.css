@@ -93,9 +93,9 @@ body{
 }
 
 .main-container{
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding-top: 40px;
-  max-width: 1500px;
+  /* max-width: 1500px; */
 }
 
 .container{
@@ -103,11 +103,6 @@ body{
 }
 
 /* Card */
-
-.row {
-  max-width: 900px;
-  margin-top: 20px;
-}
 
 .header .date{
   position: absolute;

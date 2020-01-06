@@ -15,7 +15,7 @@ function Home(props){
     let query = useQuery();
     const [movies, setMovies] = useState([])
     let {list, search} = useParams()
-    console.log(search)
+
     list = list || 'popular'
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
 
