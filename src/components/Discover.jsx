@@ -27,50 +27,45 @@ function Discover(props){
     const handleSelect = async () =>{
         
         let query
-        console.log(sortBy)
+
         try{
-            if(sortBy.value != "rated"){
-                if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
-    
-                    if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
-    
-                        query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
-    
-                    } else if(checked != "" && Object.entries(year).length !== 0){
-    
-                        query = `&primary_release_year=${year.id}&with_genres=${checked}`
-    
-                    }else if(checked != "" && sortBy != ""){
-    
-                        query = `&with_genres=${checked}&sort_by=${sortBy.value}`
-    
-                    }else if(Object.entries(year).length !== 0 && sortBy != ""){
-    
-                        query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
-    
-                    }else if(checked != ""){
-    
-                        query = `&with_genres=${checked}`
-    
-                    }else if(Object.entries(year).length !== 0){
-    
-                        query = `&primary_release_year=${year.id}`
-    
-                    }else if (sortBy != ""){
-    
-                        query = `&sort_by=${sortBy.value}`
-    
-                    }
-    
-                    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
-                    const response = await axios.get(url);
-                    setMovies(response.data.results.slice(0,12))
-                    setLoading(false)
-                } 
-            }else if (sortBy.value == "rated"){
-                setMovies([])
-                Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
-            }
+            if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
+
+                if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
+
+                    query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
+
+                } else if(checked != "" && Object.entries(year).length !== 0){
+
+                    query = `&primary_release_year=${year.id}&with_genres=${checked}`
+
+                }else if(checked != "" && sortBy != ""){
+
+                    query = `&with_genres=${checked}&sort_by=${sortBy.value}`
+
+                }else if(Object.entries(year).length !== 0 && sortBy != ""){
+
+                    query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
+
+                }else if(checked != ""){
+
+                    query = `&with_genres=${checked}`
+
+                }else if(Object.entries(year).length !== 0){
+
+                    query = `&primary_release_year=${year.id}`
+
+                }else if (sortBy != ""){
+
+                    query = `&sort_by=${sortBy.value}`
+
+                }
+
+                const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
+                const response = await axios.get(url);
+                setMovies(response.data.results.slice(0,12))
+                setLoading(false)
+            } 
         }catch(e){
             console.log(e)
         }
@@ -118,9 +113,14 @@ function Discover(props){
                 value: "original_title.desc"
             },
             {
-                label: "My Rated",
+                label: "Rating Ascending",
                 id: 4,
-                value: "rated"
+                value: "vote_average.asc"
+            },
+            {
+                label: "Rating Descending",
+                id: 5,
+                value: "vote_average.desc"
             }
         )
         setSortByOptions(sortByDisplay)
