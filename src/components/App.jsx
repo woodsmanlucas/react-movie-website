@@ -55,7 +55,9 @@ function App(){
             <Navigation getValue={getMovies}/>
             <Switch>       
                 <Route path="/about" component={About}/>
-                <Route path="/discover" component={Discover} />
+                <Route path="/discover" component={Discover} >
+                    <Discover getValue={getFavorites} />
+                </Route>
                 <Route path="/movie/:id" >
                     <Movie getStars={storeStars} ratings={rated} />
                 </Route>
