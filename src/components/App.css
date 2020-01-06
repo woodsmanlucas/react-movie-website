@@ -211,6 +211,14 @@ img{
   height: 70px;
 }
 
+.container .text{
+  height: 70px;
+}
+
+.card-text{
+  height: 210px;
+}
+
 .black{
   background-color: black;
   min-height: 100vh;
@@ -252,10 +260,10 @@ img{
 
 /*Discover Styles Page*/
 
-.discover-menu{
+.discover-main-menu{
   background-color: white;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: left;
   position: relative;
   top: 0;
@@ -265,8 +273,13 @@ img{
   padding: 10px 0 10px 10px;
 }
 
-.years{
-  width: 150px;
+.discover-menu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.years, .sort-by{
+  width: 250px;
   margin: 10px;
 }
 
@@ -279,6 +292,7 @@ img{
 .genres{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .checkbox{

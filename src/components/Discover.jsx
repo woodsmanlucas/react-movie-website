@@ -13,21 +13,103 @@ import Checkbox from "./CheckboxButton"
 
 function Discover(props){
 
-    const years = []
+    
     const [yearOptions, setYearOptions] = useState([])
+    const [sortByOptions, setSortByOptions] = useState([])
     const [year, setYear] = useState({})
+    const [sortBy, setSortBy] = useState("")
     const [movies, setMovies] = useState([])
     const [genres, setGenres] = useState([])
     const [checked, setChecked] = useState("")
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
-    
-    useEffect(() => {
-        lenghtOfTheArray()
-    }, [])
 
-    useEffect(() => {handleSelect()}, [checked, year])
+
+    useEffect(() => {lenghtOfTheArray()}, [])
+    useEffect(() => {sortByOptionsDisplay()}, [])
+    useEffect(() => {handleSelect()}, [checked, year, sortBy])
+
+    const handleSelect = async () =>{
+        
+        let query
+
+        if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
+
+            if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
+
+                query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
+
+            } else if(checked != "" && Object.entries(year).length !== 0){
+
+                query = `&primary_release_year=${year.id}&with_genres=${checked}`
+
+            }else if(checked != "" && sortBy != ""){
+
+                query = `&with_genres=${checked}&sort_by=${sortBy.value}`
+
+            }else if(Object.entries(year).length !== 0 && sortBy != ""){
+
+                query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
+
+            }else if(checked != ""){
+
+                query = `&with_genres=${checked}`
+
+            }else if(Object.entries(year).length !== 0){
+
+                query = `&primary_release_year=${year.id}`
+
+            }else if (sortBy != ""){
+
+                query = `&sort_by=${sortBy.value}`
+
+            }
+
+            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
+            console.log(url)
+            const response = await axios.get(url);
+            setMovies(response.data.results.slice(0,12))
+        }
+    }
+
+
+    const handleSelectYear = async (selected) => {
+        setYear(selected);
+    }
+
+    const handleSortBy = async (selected) => {
+        setSortBy(selected);
+    }
+
+    const sortByOptionsDisplay = async () =>{
+        const sortByDisplay = []
+
+        sortByDisplay.push(
+            {
+                label: "Release date ascending",
+                id: 0,
+                value: "release_date.asc"
+            },
+            {
+                label: "Release date descending",
+                id: 1,
+                value: "release_date.desc"
+            },
+            {
+                label: "Title (A-Z)",
+                id: 2,
+                value: "original_title.asc"
+            },
+            {
+                label: "Title (Z-A)",
+                id: 3,
+                value: "original_title.desc"
+            }
+        )
+        setSortByOptions(sortByDisplay)
+    }
 
     const lenghtOfTheArray = async () => {
+        const years = []
         let now = new Date()
         now = now.getFullYear()
 
@@ -40,39 +122,13 @@ function Discover(props){
         setYearOptions(years)
     }
 
-    const handleSelect = async () =>{
-        if(checked != "" && Object.entries(year).length !== 0){
-            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&primary_release_year=${year.id}&with_genres=${checked}`
-            console.log(url)
-            const response = await axios.get(url);
-            setMovies(response.data.results.slice(0,12))
-            console.log("I give up")
-        } else if(checked != ""){
-            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${checked}`
-            const response = await axios.get(url);
-            setMovies(response.data.results.slice(0,12))
-        } else if (Object.entries(year).length !== 0){
-            const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&primary_release_year=${year.id}`
-            console.log(url)
-            const response = await axios.get(url);
-            setMovies(response.data.results.slice(0,12))
-            console.log("it works...")
-            console.log("               kind of")
-        }
-    }
-
-
-
-    const handleSelectYear = async (selected) => {
-        setYear(selected);
-      }
-
     function getFavorites (favorites) {
         props.getValue(favorites)        
     }
 
     function getChecked (array){
         let tempChecked = []
+        
         array.forEach((box, index) => {
             if(box){
                 if(tempChecked == ""){
@@ -92,12 +148,18 @@ function Discover(props){
 
     return(
         <div className="main-container black">
-            <div className="discover-menu">
-                <div className="years">
-                    <p className="years-label">Years</p>            
-                    <Select onChange={handleSelectYear} options={yearOptions} />
-                </div>
-                <Checkbox getChecked={getChecked} getIds={getIds}/>
+            <div className="discover-main-menu">
+                    <Checkbox getChecked={getChecked} getIds={getIds}/> 
+                <div className="discover-menu">
+                    <div className="years">
+                        <p className="years-label">Year</p>            
+                        <Select onChange={handleSelectYear} options={yearOptions} />
+                    </div>
+                    <div className="sort-by">
+                        <p className="date-label">Sort</p>            
+                        <Select onChange={handleSortBy} options={sortByOptions} />
+                    </div>
+                </div> 
             </div>
             <div className="container">
                 <div className="d-lg-flex flex-wrap justify-content-center">
