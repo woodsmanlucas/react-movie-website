@@ -214,6 +214,10 @@ img{
   height: 210px;
 }
 
+.badge-pill{
+  font-size: 100%;
+}
+
 .black{
   background-color: black;
   min-height: 100vh;

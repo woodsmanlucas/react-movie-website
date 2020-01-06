@@ -22,7 +22,6 @@ function Home(props){
     useEffect(() => {fetchMovies()}, !props.getSearch ? [list] : [props.getSearch])
 
     const fetchMovies = async () => {
-
         let url
 
         url = `https://api.themoviedb.org/3/movie/${list}?api_key=${apiKey}`

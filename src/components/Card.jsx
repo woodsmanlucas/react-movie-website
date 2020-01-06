@@ -27,11 +27,11 @@ function Card(props){
                                         <li><span>{movie.vote_average} / 10</span></li>
                                     </ul>
                                     </div>
-                                    <div className="card-text">
+                                    <div className="card-text text-center">
                                         <div className="content">
                                             <h3 className="text-center">{movie.title}</h3>
                                             <p className="text">{movie.overview.substring(0, 120) + "..."}</p>
-                                            <a href={`/movie/${movie.id}`} className="button mb-3">Read more</a>
+                                            <a href={`/movie/${movie.id}`} className="badge badge-pill badge-info m-3">Read more</a>
                                         </div>
                                     </div>
                                 </div>

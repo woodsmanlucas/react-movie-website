@@ -10,14 +10,15 @@ function SearchMovie(props){
     const [redirect, setRedirect] = useState(false)
 
 
-    useEffect(() => {handleSearch()}, [search])
+    useEffect(() => {
+        const handleSearch = () =>{
+            props.getValue(search)
+        };
+        handleSearch();
+    }, [search])
 
     const handleQuery = (event) =>{
             setQuery(event.target.value)
-    }
-
-    const handleSearch = () =>{
-        props.getValue(search)
     }
 
     function handleSubmit(e) {
