@@ -93,9 +93,9 @@ body{
 }
 
 .main-container{
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding-top: 40px;
-  max-width: 1500px;
+  /* max-width: 1500px; */
 }
 
 .container{
@@ -103,11 +103,6 @@ body{
 }
 
 /* Card */
-
-.row {
-  max-width: 900px;
-  margin-top: 20px;
-}
 
 .header .date{
   position: absolute;
@@ -211,6 +206,18 @@ img{
   height: 70px;
 }
 
+.container .text{
+  height: 70px;
+}
+
+.card-text{
+  height: 210px;
+}
+
+.badge-pill{
+  font-size: 100%;
+}
+
 .black{
   background-color: black;
   min-height: 100vh;
@@ -252,10 +259,10 @@ img{
 
 /*Discover Styles Page*/
 
-.discover-menu{
+.discover-main-menu{
   background-color: white;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: left;
   position: relative;
   top: 0;
@@ -265,20 +272,25 @@ img{
   padding: 10px 0 10px 10px;
 }
 
-.years{
-  width: 150px;
+.discover-menu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.years, .sort-by{
+  width: 250px;
   margin: 10px;
 }
 
-.years-label{
+.label{
   text-align: center;
-  width: 150px;
   background-color: white;
 }
 
 .genres{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .checkbox{

@@ -13,31 +13,29 @@ export function Movie(props){
     const [displayrating, setDisplayRating] = useState(rated[id] || false)
 
     useEffect(() => {
-        getMovie(id)
+        async function getMovie(id){
+            const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
+            data.json().then(function(value) {
+                setMovie(value); 
+            })            
+        };
+        getMovie(id);
       }, [props])
 
-      async function getMovie(id){
-          const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-          data.json().then(function(value) {
-                setMovie(value); 
-            })
-            
+    function getStars (stars, id){
+        props.getStars(stars, id)
+        if(id < 0){
+            setDisplayRating(false)
         }
+    }
 
-        function getStars (stars, id){
-            props.getStars(stars, id)
-            if(id < 0){
-                setDisplayRating(false)
-            }
-        }
+    function getFavorites (favorites) {
+        props.getValue(favorites)
+    }
 
-        function getFavorites (favorites) {
-            props.getValue(favorites)
-        }
-
-        function handleClick () {
-            setDisplayRating(true)
-        }
+    function handleClick () {
+        setDisplayRating(true)
+    }
 
 
     return (

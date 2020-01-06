@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import FavoriteButton from './FavoriteButton'
 import RatingStars from './RatingStars'
-import '../styles/bootstrap.min.css'
 import './App.css'
+import '../styles/bootstrap.min.css'
 import Moment from 'moment'
 
 function Ratings(props) {
@@ -53,11 +53,11 @@ function Ratings(props) {
                     <li><a href="#" className="fa fa-heart-o"><span>{movie.vote_average}</span></a></li>
                 </ul>
             </div>
-             <div className="card-text">
+             <div className="card-text text-center">
                 <div className="content">
                    <h3 className="text-center">{movie.title}</h3>
                     <p className="text">{movie.overview.substring(0, 120) + "..."}</p>
-                    <a href={`/movie/${movie.id}`} className="button mb-3">Read more</a>
+                    <a href={`/movie/${movie.id}`} className="badge badge-pill badge-info m-3">Read more</a>
                 </div>
             </div>
         </div>
