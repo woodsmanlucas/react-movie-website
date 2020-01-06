@@ -28,75 +28,48 @@ function Discover(props){
     const handleSelect = async () =>{
         
         let query
-        console.log(sortBy)
+
         try{
-            if(sortBy.value != "rated"){
-                if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
-    
-                    if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
-    
-                        query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
-    
-                    } else if(checked != "" && Object.entries(year).length !== 0){
-    
-                        query = `&primary_release_year=${year.id}&with_genres=${checked}`
-    
-                    }else if(checked != "" && sortBy != ""){
-    
-                        query = `&with_genres=${checked}&sort_by=${sortBy.value}`
-    
-                    }else if(Object.entries(year).length !== 0 && sortBy != ""){
-    
-                        query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
-    
-                    }else if(checked != ""){
-    
-                        query = `&with_genres=${checked}`
-    
-                    }else if(Object.entries(year).length !== 0){
-    
-                        query = `&primary_release_year=${year.id}`
-    
-                    }else if (sortBy != ""){
-    
-                        query = `&sort_by=${sortBy.value}`
-    
-                    }
-    
-                    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
-                    const response = await axios.get(url);
-                    setMovies(response.data.results.slice(0,12))
-                    setLoading(false)
-                } 
-            } else if (sortBy.value == "rated"){
-                console.log("hello")
-                setMovies([])
-                Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
-            }
+            if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
+
+                if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
+
+                    query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
+
+                } else if(checked != "" && Object.entries(year).length !== 0){
+
+                    query = `&primary_release_year=${year.id}&with_genres=${checked}`
+
+                }else if(checked != "" && sortBy != ""){
+
+                    query = `&with_genres=${checked}&sort_by=${sortBy.value}`
+
+                }else if(Object.entries(year).length !== 0 && sortBy != ""){
+
+                    query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
+
+                }else if(checked != ""){
+
+                    query = `&with_genres=${checked}`
+
+                }else if(Object.entries(year).length !== 0){
+
+                    query = `&primary_release_year=${year.id}`
+
+                }else if (sortBy != ""){
+
+                    query = `&sort_by=${sortBy.value}`
+
+                }
+
+                const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
+                const response = await axios.get(url);
+                setMovies(response.data.results.slice(0,12))
+                setLoading(false)
+            } 
         }catch(e){
             console.log(e)
         }
-    }
-
-    async function getMovie(id){
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-        data.json().then(function(value) {
-            if(checkMovieGenres(value)){
-                setMovies(movies => [...movies, value])
-            }    
-        })
-      }
-
-    function checkMovieGenres(movie){
-        let list = []
-        if(checkedArray == []){
-            return true
-        }
-        console.log(checkedArray)
-            movie.genres.forEach((genre) => list.push(checkedArray.includes(genre.id)))
-        console.log(list)
-        console.log(movie)
-        return list.includes(true)
     }
 
     const handleSelectYear = async (selected) => {
@@ -132,9 +105,14 @@ function Discover(props){
                 value: "original_title.desc"
             },
             {
-                label: "My Rated",
+                label: "Rating Ascending",
                 id: 4,
-                value: "rated"
+                value: "vote_average.asc"
+            },
+            {
+                label: "Rating Descending",
+                id: 5,
+                value: "vote_average.desc"
             }
         )
         setSortByOptions(sortByDisplay)
