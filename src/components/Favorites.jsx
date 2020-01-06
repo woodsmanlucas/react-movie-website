@@ -22,20 +22,24 @@ function Favorites (props){
 
     async function getMovie(id){
         const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=47c4adc75b16f23db3cf78e4870a4296&language=en-US`)
-        data.json().then(function(value) {    
-        setMovies(movies => [...movies, value])
-       
-          })
+        try{
+            data.json().then(function(value) {    
+            setMovies(movies => [...movies, value])
+            })
+        }catch(e){
+            console.log(e)
+        }
       }
 
     function getFavorites(favorite){
         props.getValue(favorite)
     }
 
-
     return (
         <div className="main-container black">
-            {(movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> : <h2 className="text-center">Sorry you have no favourited movies. Search for a movie to add to your favourites.</h2>} 
+            {(movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> 
+            : 
+            <h2 className="text-center">Sorry you have no favourited movies. Search for a movie to add to your favourites.</h2>} 
         </div>
     )
 }

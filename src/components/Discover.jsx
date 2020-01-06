@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react"
-import Moment from "moment"
 import axios from "axios"
 import "./App.css"
 import "../styles/bootstrap.min.css"
-import FavoriteButton from './FavoriteButton'
 import Select from "react-select";
 import Checkbox from "./CheckboxButton"
 import Card from "./Card"
@@ -19,6 +17,7 @@ function Discover(props){
     const [genres, setGenres] = useState([])
     const [checked, setChecked] = useState("")
     const [checkedArray, setCheckedArray] = useState([])
+    const [loading, setLoading] = useState(true)
     const apiKey = "47c4adc75b16f23db3cf78e4870a4296"
 
 
@@ -30,48 +29,51 @@ function Discover(props){
         
         let query
         console.log(sortBy)
-        if(sortBy.value != "rated"){
-            if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
-
-                if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
-
-                    query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
-
-                } else if(checked != "" && Object.entries(year).length !== 0){
-
-                    query = `&primary_release_year=${year.id}&with_genres=${checked}`
-
-                }else if(checked != "" && sortBy != ""){
-
-                    query = `&with_genres=${checked}&sort_by=${sortBy.value}`
-
-                }else if(Object.entries(year).length !== 0 && sortBy != ""){
-
-                    query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
-
-                }else if(checked != ""){
-
-                    query = `&with_genres=${checked}`
-
-                }else if(Object.entries(year).length !== 0){
-
-                    query = `&primary_release_year=${year.id}`
-
-                }else if (sortBy != ""){
-
-                    query = `&sort_by=${sortBy.value}`
-
-                }
-
-                const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
-                const response = await axios.get(url);
-                setMovies(response.data.results.slice(0,12))
-            } 
-        }else if (sortBy.value == "rated"){
-            setMovies([])
-            Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
-            movies.filter((movie) => {checkMovieGenres(movie)})
-
+        try{
+            if(sortBy.value != "rated"){
+                if(checked != "" || Object.entries(year).length !== 0 || sortBy != ""){
+    
+                    if(checked != "" && Object.entries(year).length !== 0 && sortBy != ""){
+    
+                        query = `&primary_release_year=${year.id}&with_genres=${checked}&sort_by=${sortBy.value}`
+    
+                    } else if(checked != "" && Object.entries(year).length !== 0){
+    
+                        query = `&primary_release_year=${year.id}&with_genres=${checked}`
+    
+                    }else if(checked != "" && sortBy != ""){
+    
+                        query = `&with_genres=${checked}&sort_by=${sortBy.value}`
+    
+                    }else if(Object.entries(year).length !== 0 && sortBy != ""){
+    
+                        query = `&primary_release_year=${year.id}&sort_by=${sortBy.value}`
+    
+                    }else if(checked != ""){
+    
+                        query = `&with_genres=${checked}`
+    
+                    }else if(Object.entries(year).length !== 0){
+    
+                        query = `&primary_release_year=${year.id}`
+    
+                    }else if (sortBy != ""){
+    
+                        query = `&sort_by=${sortBy.value}`
+    
+                    }
+    
+                    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey + query}`
+                    const response = await axios.get(url);
+                    setMovies(response.data.results.slice(0,12))
+                    setLoading(false)
+                } 
+            }else if (sortBy.value == "rated"){
+                setMovies([])
+                Object.keys(props.movies).forEach(function (id, stars) {getMovie(id)});
+            }
+        }catch(e){
+            console.log(e)
         }
     }
 
@@ -196,7 +198,14 @@ function Discover(props){
                     </div>
                 </div> 
             </div>
-            {(movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> : <h2 className="text-center">Please Select an Option</h2>}            
+            {loading ? (<h2 className="text-center">Please Select an Option</h2>)
+                :
+                (
+                    (movies.length !== 0) ? <Card cards={movies} getValue={getFavorites}/> 
+                    : 
+                    (<h2 className="text-center">No results found</h2>)
+                )
+            }             
         </div>
     )
 }
