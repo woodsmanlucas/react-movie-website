@@ -3,4 +3,4 @@
 
 ### serve -s build
 
-Or serve it from a static server
+Or serve the build folder from a static server
