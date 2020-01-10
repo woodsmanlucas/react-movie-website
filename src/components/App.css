@@ -40,7 +40,7 @@ label{
   font-size: 50px;
   position: fixed;
   left: 20px;
-  top: -10px;
+  top: -5px;
   transition: 0.5s;
   cursor: pointer;
   color:rgb(255, 255, 255);
@@ -267,6 +267,24 @@ img{
     left: 11%;
     width: 78.5%;
   }
+}
+
+@media (min-width: 575px){
+  label{
+    top: -10px;
+  }
+
+  .form-inline .form-control{
+    width: 100%;
+  }
+}
+
+.form-inline .form-control{
+  width: 62%;
+}
+
+.form-inline{
+  justify-content: flex-end;
 }
 
 .discover-menu{
